@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  xmlns:th="http://www.thymeleaf.org">
+ <head lang="en">
+  <meta charset="UTF-8"></meta>
+  <title>歌曲列表</title>
+  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css"></link>
+  <link rel="stylesheet" href="/css/footer.css"></link>
+</head>
+ <body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <!--<a class="navbar-brand" href="https://www.tianmaying.com/tutorial/music-163-crawler">网易云音乐歌曲列表(共<span th:text="${count}"></span>首歌曲)</a>-->
+      <a class="navbar-brand" href="https://www.tianmaying.com/tutorial/music-163-crawler">网易云音乐歌曲列表</a>
+    </div>
+  </div>
+</nav>
+
+ <div class="container" style="margin-top:50px">
+   <div class="row">
+     <div class="col-sm-8">
+      <div class="blog-post">
+        <span class="col-sm-8"></span>
+      </div>
+      <h3><a href="https://www.tianmaying.com/tutorial/music-163-crawler">网易云音乐</a></h3>
+        
+      
+      <table class="table"> 
+        <thead>
+            <tr>
+                <th>歌曲</th>
+                <th>评论数</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="song: ${songs}">
+                <td><a th:text="${song.name}" th:href="@{'http://music.163.com'+${song.url}}" target="_blank"></a></td>
+                <td th:text="${song.amountOfPlay}"></td>
+            </tr>
+        </tbody>
+      </table>
+      
+      <hr></hr>
+       <nav>
+        <ul class="pager">
+          <li class="previous"><a th:if="${page gt 1}" th:href="@{'/list/' + ${page - 1}}">上一页<span aria-hidden="true">&larr;</span></a></li>
+          <li class="next"><a th:if="${size = 10}" th:href="@{'/list/' + ${page + 1}}">下一页 <span aria-hidden="true">&rarr;</span></a></li>
+        </ul>
+      </nav>
+     </div>
+    </div>
+   </div>
+   <footer>
+
+  </footer>
+ </body>
+</html>

@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Implementation-Title: wangyimusic
+Implementation-Version: 1.5.6.RELEASE
+Archiver-Version: Plexus Archiver
+Built-By: pc
+Implementation-Vendor-Id: org.springframework.boot
+Spring-Boot-Version: 1.5.6.RELEASE
+Implementation-Vendor: Pivotal Software, Inc.
+Main-Class: org.springframework.boot.loader.JarLauncher
+Start-Class: com.bizideal.mn.Application
+Spring-Boot-Classes: BOOT-INF/classes/
+Spring-Boot-Lib: BOOT-INF/lib/
+Created-By: Apache Maven 3.3.9
+Build-Jdk: 1.8.0_112
+Implementation-URL: http://maven.apache.org
+

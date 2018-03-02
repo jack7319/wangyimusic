@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bizideal.mn.mapper.PlayListMapper">
+
+    <sql id="Base_Column_List">
+    id, name, category, amount_of_play, owner, url, create_time, update_time,status
+  </sql>
+
+    <insert id="insertList1">
+        INSERT INTO play_list (<include refid="Base_Column_List"></include>) VALUES
+
+        <foreach collection="playLists" index="index" item="item" separator=",">
+            (#{item.id},#{item.name},#{item.category},#{item.amountOfPlay},#{item.owner},#{item.url},#{item.createTime},#{item.status})
+        </foreach>
+
+    </insert>
+
+    <select id="queryByPage" resultType="com.bizideal.mn.entity.PlayList">
+        SELECT id,url FROM play_list
+
+        WHERE status = #{status} LIMIT #{startRow},#{pageSize}
+
+    </select>
+
+    <update id="updateStatus">
+        UPDATE play_list SET STATUS = #{status} WHERE id IN
+
+        <foreach collection="playListIds" index="index" item="item" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <select id="queryByStatus" resultType="com.bizideal.mn.entity.PlayList">
+        SELECT id,update_time FROM play_list
+
+        WHERE status = #{status}
+
+    </select>
+</mapper>

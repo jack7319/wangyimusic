@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bizideal.mn.mapper.SongMapper">
+
+    <sql id="Base_Column_List">
+    id, name, category, amount_of_play, owner, url, create_time, update_time,status
+  </sql>
+
+    <select id="getCount" resultType="java.lang.Integer">
+        SELECT COUNT(1) FROM song
+    </select>
+    
+    <update id="updateAllStatus">
+        UPDATE song SET status = #{status}
+    </update>
+
+    <select id="getByPage" resultType="com.bizideal.mn.entity.Song">
+        SELECT id,url FROM song WHERE status = #{status} LIMIT #{startRow},#{endRow}
+    </select>
+
+    <select id="getSongs" resultType="com.bizideal.mn.entity.Song">
+        SELECT id,name,url,amount_of_play FROM song ORDER BY amount_of_play DESC LIMIT #{startRow},#{endRow}
+    </select>
+
+    <update id="updateStatus">
+        UPDATE song SET status = #{status} WHERE id IN 
+        <foreach collection="songIds" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </update>
+
+</mapper>
